@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Form from './Form.js'
+import Form from './Form.jsx'
 import Button from './Button.js'
 
 function App() {
@@ -11,15 +11,30 @@ function App() {
   rePassword: '',
   rememberMe: false,
   });
+
+  const [arr, setArr]= useState([
+
+  ])
     
     function handleChange(event){
       const value = event.target.value;
      setData({...data, [event.target.name]: value});
     }
 
+    
+
     function handleClick(event){
       event.preventDefault();
-      console.log(data);
+
+      const person= {
+        email: data.email,
+        password: data.password,
+        rePassword: data.rePassword,
+      };
+      
+      setArr((prevArr)=> [...prevArr, person]);
+      localStorage.setItem('data', JSON.stringify([...arr, person]);
+      setData({email: '', password: '', rePassword: ''})
     }
 
   return (
